@@ -46,8 +46,8 @@ function App() {
           <h1>{placeInfo.celsius?.current}°C</h1>
           <div className="condition-high-low">
             <h1>{placeInfo.condition}</h1>
-            <h1>{placeInfo.celsius?.high}°C</h1>
-            <h1>{placeInfo.celsius?.low}°C</h1>
+            <h1>High:  {placeInfo.celsius?.high}°C</h1>
+            <h1>Low:  {placeInfo.celsius?.low}°C</h1>
           </div>
         </div>
         <h2>{placeInfo.name}, {placeInfo.country}</h2>
