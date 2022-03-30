@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
+import { BsSearch } from 'react-icons/bs'
+
 
 function App() {
 
-  const [place, setPlace] = useState('');
+  const [place, setPlace] = useState('wellington');
   const [placeInfo, setPlaceInfo] = useState({})
+
+  useEffect(() => {
+    handleFetch();
+  }, []);
 
   const handleFetch = () => {
     fetch(`http://api.weatherapi.com/v1/forecast.json?key=b837a8d86159446b8b814617223003&q=${place}&days=1&aqi=no&alerts=no`)
@@ -21,25 +27,27 @@ function App() {
         condition: data.current.condition.text
       })
     );
+    setPlace("");
   };
 
-  console.log(placeInfo)
+  // console.log(placeInfo)
 
   return (
-    <div className="App">
+    <div className="app">
 
       <div className="search-input">
         <input type="text" value={place} onChange={(e) => setPlace(e.target.value)}/>
-        <button onClick={handleFetch}>Search</button>
+        <BsSearch onClick={handleFetch} fontSize="large" className="search-button" />
+        {/* <button >Search</button> */}
       </div>
 
       <div className="weather-container">
         <div className="top-part">
-          <h1>{placeInfo.celsius.current}</h1>
+          <h1>{placeInfo.celsius?.current}°C</h1>
           <div className="condition-high-low">
             <h1>{placeInfo.condition}</h1>
-            <h1>{placeInfo.celsius.high}</h1>
-            <h1>{placeInfo.celsius.low}</h1>
+            <h1>{placeInfo.celsius?.high}°C</h1>
+            <h1>{placeInfo.celsius?.low}°C</h1>
           </div>
         </div>
         <h2>{placeInfo.name}, {placeInfo.country}</h2>
