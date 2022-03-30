@@ -37,9 +37,12 @@ function App() {
 
       <div className="search-input">
         <input type="text" value={place} onChange={(e) => setPlace(e.target.value)}/>
+      </div>
+      <div className="button-container">
         <BsSearch onClick={handleFetch} fontSize="large" className="search-button" />
         {/* <button >Search</button> */}
       </div>
+      
 
       <div className="weather-container">
         <div className="top-part">
